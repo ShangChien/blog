@@ -1,0 +1,66 @@
+---
+import { getEntry, render, type CollectionEntry } from "astro:content";
+import Container from "@components/Container.astro";
+import Layout from "@layouts/Layout.astro";
+import type { Locale } from "@lib/i18n";
+
+type Props = {
+  locale: Locale;
+};
+
+const { locale } = Astro.props;
+const entry = (await getEntry("resume", locale)) as
+  CollectionEntry<"resume"> | undefined;
+
+if (!entry) {
+  throw new Error(`Missing resume content for locale: ${locale}`);
+}
+
+const { Content } = await render(entry);
+
+const labels = {
+  zh: {
+    downloadZh: "下载中文 PDF",
+    downloadEn: "下载英文 PDF",
+    switchVersion: "英文简历",
+    markdown: "Markdown 源文档",
+  },
+  en: {
+    downloadZh: "Download Chinese PDF",
+    downloadEn: "Download English PDF",
+    switchVersion: "Chinese resume",
+    markdown: "Markdown source",
+  },
+};
+
+const otherLocale = locale === "zh" ? "en" : "zh";
+const otherResumePath = otherLocale === "zh" ? "/resume" : "/resume/en";
+const sourcePath = locale === "zh" ? "/resume.md" : "/resume-en.md";
+const actionClass =
+  "inline-flex h-9 items-center rounded-sm border border-black/15 px-3 text-sm transition-colors duration-300 ease-in-out hover:bg-black/5 hover:text-black focus-visible:bg-black/5 focus-visible:text-black dark:border-white/20 dark:hover:bg-white/5 dark:hover:text-white dark:focus-visible:bg-white/5";
+---
+
+<Layout title={entry.data.title} description={entry.data.description}>
+  <Container>
+    <div class="space-y-8">
+      <div class="no-print animate not-prose flex flex-wrap items-center gap-2">
+        <a href="/resume.pdf" download class={actionClass}>
+          {labels[locale].downloadZh}
+        </a>
+        <a href="/resume-en.pdf" download class={actionClass}>
+          {labels[locale].downloadEn}
+        </a>
+        <a href={otherResumePath} class={actionClass}>
+          {labels[locale].switchVersion}
+        </a>
+        <a href={sourcePath} class={actionClass}>
+          {labels[locale].markdown}
+        </a>
+      </div>
+
+      <article class="animate resume-content">
+        <Content />
+      </article>
+    </div>
+  </Container>
+</Layout>

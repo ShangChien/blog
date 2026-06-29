@@ -26,4 +26,14 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { blog, projects };
+const resume = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/resume" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    locale: z.enum(["zh", "en"]),
+    pdf: z.string(),
+  }),
+});
+
+export const collections = { blog, projects, resume };

@@ -1,3 +1,10 @@
+---
+title: 陈尚千
+description: 陈尚千的个人简历，聚焦 AI 药物研发、计算化学平台、RDKit、PostgreSQL 与科研算法产品化。
+locale: zh
+pdf: /resume.pdf
+---
+
 # 陈尚千
 
 邮箱：hi@emm.sh  

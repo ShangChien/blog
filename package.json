@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
+    "build": "astro check && astro build && node scripts/generate-resume-pdf.mjs",
+    "preview": "node scripts/generate-resume-pdf.mjs && astro preview",
+    "resume:pdf": "node scripts/generate-resume-pdf.mjs",
     "astro": "astro"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.18",
     "pagefind": "^1.4.0",
+    "playwright": "^1.61.1",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.14"

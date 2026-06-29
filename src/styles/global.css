@@ -149,3 +149,35 @@ pre {
 .copy-code:active {
   @apply scale-90 transition-transform;
 }
+
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  main {
+    padding-block: 0 !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .resume-content {
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .resume-content h1,
+  .resume-content h2,
+  .resume-content h3 {
+    break-after: avoid;
+  }
+
+  .resume-content table {
+    font-size: 8px;
+  }
+}

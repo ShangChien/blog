@@ -1,0 +1,165 @@
+---
+import Container from "@components/Container.astro";
+import EmailLink from "@components/EmailLink.astro";
+import Link from "@components/Link.astro";
+import Layout from "@layouts/Layout.astro";
+import { SITE, SOCIALS } from "@consts";
+import type { Locale } from "@lib/i18n";
+import { profile } from "@data/profile";
+
+type Props = {
+  locale: Locale;
+};
+
+const { locale } = Astro.props;
+const content = profile[locale];
+const siteTitle = SITE.TITLE;
+---
+
+<Layout title={content.homeTitle} description={content.homeDescription}>
+  <Container>
+    <aside data-pagefind-ignore>
+      <h1
+        class="max-w-3xl text-3xl leading-tight font-semibold text-black sm:text-5xl dark:text-white"
+      >
+        {content.name}
+      </h1>
+      <div class="space-y-20">
+        <section
+          class="grid gap-8 pt-6 md:grid-cols-[1.1fr_0.9fr] md:items-center"
+        >
+          <article class="space-y-5 text-base leading-8">
+            <p class="text-xl leading-9 text-black/80 dark:text-white/80">
+              {content.intro}
+            </p>
+            <p>{content.summary}</p>
+            <p>{content.philosophy}</p>
+            <div class="not-prose flex flex-wrap gap-3 pt-2">
+              <Link href="/resume">{content.actions.resume}</Link>
+              <span class="text-black/25 dark:text-white/25">/</span>
+              <Link href="/projects">{content.actions.projects}</Link>
+              <span class="text-black/25 dark:text-white/25">/</span>
+              <Link href="/blog">{content.actions.blog}</Link>
+            </div>
+          </article>
+          <figure
+            class="animate overflow-hidden rounded-lg border border-black/10 bg-neutral-50 shadow-sm dark:border-white/15 dark:bg-neutral-900"
+          >
+            <img
+              src="/platform-hero.png"
+              alt="Abstract molecular graph and database table interface"
+              class="aspect-[4/3] w-full object-cover"
+              loading="eager"
+            />
+          </figure>
+        </section>
+
+        <section
+          class="animate grid gap-4 border-y border-black/10 py-10 sm:grid-cols-3 dark:border-white/15"
+        >
+          {
+            content.stats.map((stat) => (
+              <article>
+                <div class="text-2xl font-semibold text-black dark:text-white">
+                  {stat.value}
+                </div>
+                <p class="text-sm">{stat.label}</p>
+              </article>
+            ))
+          }
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              {content.projectHeading}
+            </h2>
+            <Link href="/resume">{content.actions.fullExperience}</Link>
+          </div>
+          <div class="not-prose grid gap-4 md:grid-cols-2">
+            {
+              content.platformProjects.map((project) => (
+                <article class="rounded-lg border border-black/15 p-5 transition-colors duration-300 ease-in-out hover:bg-black/5 dark:border-white/20 dark:hover:bg-white/5">
+                  <h3 class="font-semibold text-black dark:text-white">
+                    {project.name}
+                  </h3>
+                  <p class="mt-3 text-sm leading-7">{project.description}</p>
+                  <ul class="mt-4 flex flex-wrap gap-2 text-xs">
+                    {project.tags.map((tag) => (
+                      <li class="rounded-full border border-black/10 px-2 py-1 dark:border-white/15">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+
+        <section
+          class="animate grid gap-6 border-y border-black/10 py-10 md:grid-cols-3 dark:border-white/15"
+        >
+          <div>
+            <h2 class="font-semibold text-black dark:text-white">
+              {content.capabilityHeading}
+            </h2>
+          </div>
+          <article class="md:col-span-2">
+            <ul class="grid gap-x-6 sm:grid-cols-2">
+              {content.capabilities.map((capability) => <li>{capability}</li>)}
+            </ul>
+          </article>
+        </section>
+
+        <section class="animate grid gap-6 md:grid-cols-3">
+          <div>
+            <h2 class="font-semibold text-black dark:text-white">
+              {content.deliveryHeading}
+            </h2>
+          </div>
+          <article class="space-y-4 md:col-span-2">
+            <p>{content.delivery}</p>
+            <ul class="not-prose flex flex-wrap gap-2 text-sm">
+              {
+                content.customers.map((customer) => (
+                  <li class="rounded-full border border-black/10 px-3 py-1 dark:border-white/15">
+                    {customer}
+                  </li>
+                ))
+              }
+            </ul>
+          </article>
+        </section>
+
+        <section class="animate space-y-4">
+          <h2 class="font-semibold text-black dark:text-white">
+            {content.contactHeading}
+          </h2>
+          <article>
+            <p>{content.contact}</p>
+          </article>
+          <ul class="not-prose flex flex-wrap gap-2">
+            {
+              SOCIALS.map((SOCIAL) => (
+                <li class="flex gap-x-2 text-nowrap">
+                  <Link
+                    href={SOCIAL.HREF}
+                    external
+                    aria-label={`${siteTitle} on ${SOCIAL.NAME}`}
+                  >
+                    {SOCIAL.NAME}
+                  </Link>
+                  {"/"}
+                </li>
+              ))
+            }
+            <li class="line-clamp-1">
+              <EmailLink email={SITE.EMAIL} ariaLabel={`Email ${siteTitle}`} />
+            </li>
+          </ul>
+        </section>
+      </div>
+    </aside>
+  </Container>
+</Layout>
