@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build && node scripts/generate-resume-pdf.mjs",
-    "preview": "node scripts/generate-resume-pdf.mjs && astro preview",
-    "resume:pdf": "node scripts/generate-resume-pdf.mjs",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "resume:pdf": "astro build && node scripts/generate-resume-pdf.mjs",
     "astro": "astro"
   },
   "dependencies": {

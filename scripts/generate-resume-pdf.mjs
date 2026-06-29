@@ -1,7 +1,11 @@
+import { execFileSync } from "node:child_process";
 import { createServer } from "node:http";
-import { extname, join, resolve } from "node:path";
+import { dirname, extname, join, resolve } from "node:path";
 import { readFile, stat } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+
+const scriptDir = dirname(fileURLToPath(import.meta.url));
 
 const root = resolve("dist");
 const outDir = resolve("public");
@@ -63,6 +67,24 @@ async function listen(server) {
   await new Promise((resolveListen) => server.listen(port, resolveListen));
 }
 
+async function ensureChromium() {
+  try {
+    const browser = await chromium.launch();
+    await browser.close();
+    return;
+  } catch (error) {
+    if (!String(error).includes("Executable doesn't exist")) {
+      throw error;
+    }
+  }
+
+  console.log("Installing Playwright Chromium...");
+  const cli = join(scriptDir, "../node_modules/playwright/cli.js");
+  execFileSync(process.execPath, [cli, "install", "chromium"], {
+    stdio: "inherit",
+  });
+}
+
 async function printResume(page, path, output) {
   await page.goto(`${origin}${path}`, { waitUntil: "networkidle" });
   await page.pdf({
@@ -81,6 +103,7 @@ async function printResume(page, path, output) {
 const server = createStaticServer();
 await listen(server);
 
+await ensureChromium();
 const browser = await chromium.launch();
 const page = await browser.newPage();
 
