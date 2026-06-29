@@ -1,0 +1,157 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import { SITE, HOME, SOCIALS } from "@consts";
+import ArrowCard from "@components/ArrowCard.astro";
+import Link from "@components/Link.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const blog = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
+
+const projects: CollectionEntry<"projects">[] = (
+  await getCollection("projects")
+)
+  .filter((project) => !project.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
+---
+
+<Layout title={HOME.TITLE} description={HOME.DESCRIPTION}>
+  <Container>
+    <aside data-pagefind-ignore>
+      <h1
+        class="max-w-3xl text-3xl leading-tight font-semibold text-black sm:text-5xl dark:text-white"
+      >
+        Deep Platform Notes
+      </h1>
+      <div class="space-y-20">
+        <section
+          class="grid gap-8 pt-6 md:grid-cols-[1.1fr_0.9fr] md:items-center"
+        >
+          <article class="space-y-5 text-base leading-8">
+            <p class="text-xl leading-9 text-black/80 dark:text-white/80">
+              长期记录 AI 药物研发平台工程化、RDKit 化学信息处理、PostgreSQL
+              数据系统和科研工具产品化。
+            </p>
+            <p>
+              这里不是新闻流，而是一套可复用的工程笔记：从分子标准化、相似性检索、任务队列、实验追踪，到平台边界、数据质量和上线后的可观测性。
+            </p>
+            <div class="not-prose flex flex-wrap gap-3 pt-2">
+              <Link href="/blog">Read notes</Link>
+              <span class="text-black/25 dark:text-white/25">/</span>
+              <Link href="/projects">View projects</Link>
+              <span class="text-black/25 dark:text-white/25">/</span>
+              <Link href="/resume">Resume</Link>
+            </div>
+          </article>
+          <figure
+            class="animate overflow-hidden rounded-lg border border-black/10 bg-neutral-50 shadow-sm dark:border-white/15 dark:bg-neutral-900"
+          >
+            <img
+              src="/platform-hero.png"
+              alt="Abstract molecular graph and database table interface"
+              class="aspect-[4/3] w-full object-cover"
+              loading="eager"
+            />
+          </figure>
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              Latest posts
+            </h2>
+            <Link href="/blog"> See all posts </Link>
+          </div>
+          <ul class="not-prose flex flex-col gap-4">
+            {
+              blog.map((post) => (
+                <li>
+                  <ArrowCard entry={post} />
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="animate space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-y-2">
+            <h2 class="font-semibold text-black dark:text-white">
+              Recent projects
+            </h2>
+            <Link href="/projects"> See all projects </Link>
+          </div>
+          <ul class="not-prose flex flex-col gap-4">
+            {
+              projects.map((project) => (
+                <li>
+                  <ArrowCard entry={project} />
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section
+          class="animate grid gap-6 border-y border-black/10 py-10 md:grid-cols-3 dark:border-white/15"
+        >
+          <div>
+            <h2 class="font-semibold text-black dark:text-white">Focus</h2>
+          </div>
+          <article class="md:col-span-2">
+            <ul>
+              <li>
+                AI drug discovery platform engineering and research workflows
+              </li>
+              <li>
+                RDKit pipelines, molecular data normalization, and search
+                patterns
+              </li>
+              <li>
+                PostgreSQL schemas, indexing, queues, and operational notes
+              </li>
+              <li>Personal projects, tool write-ups, and an online resume</li>
+            </ul>
+          </article>
+        </section>
+
+        <section class="animate space-y-4">
+          <h2 class="font-semibold text-black dark:text-white">Connect</h2>
+          <article>
+            <p>
+              欢迎交流科研平台、化学信息学基础设施、数据库建模与工程团队协作。
+            </p>
+          </article>
+          <ul class="not-prose flex flex-wrap gap-2">
+            {
+              SOCIALS.map((SOCIAL) => (
+                <li class="flex gap-x-2 text-nowrap">
+                  <Link
+                    href={SOCIAL.HREF}
+                    external
+                    aria-label={`${SITE.TITLE} on ${SOCIAL.NAME}`}
+                  >
+                    {SOCIAL.NAME}
+                  </Link>
+                  {"/"}
+                </li>
+              ))
+            }
+            <li class="line-clamp-1">
+              <Link
+                href={`mailto:${SITE.EMAIL}`}
+                aria-label={`Email ${SITE.TITLE}`}
+              >
+                {SITE.EMAIL}
+              </Link>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </aside>
+  </Container>
+</Layout>

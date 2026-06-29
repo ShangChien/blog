@@ -1,0 +1,36 @@
+---
+title: "AI 药物研发平台的工程边界"
+description: "从 notebook、任务队列、数据合同和模型服务边界看研发平台如何长期演进。"
+date: "2026-06-24"
+tags:
+  - ai-drug-discovery
+  - platform-engineering
+  - architecture
+---
+
+平台工程的第一件事不是把所有能力塞进一个巨大的系统，而是把研究动作拆成稳定的边界。
+
+## 一条主线
+
+一个可持续的 AI 药物研发平台通常会围绕四层边界展开：
+
+- 数据合同：化合物、批次、assay、模型运行和项目空间的语义。
+- 计算边界：notebook 探索、批任务、GPU 推理、CPU 特征工程各自的资源模型。
+- 交互边界：研究人员需要的是可解释的状态、可追溯的输入和能复现的输出。
+- 运维边界：失败重试、审计日志、指标、成本和权限都应在平台层清晰暴露。
+
+## 一个判断标准
+
+如果一个能力只能在单个 notebook 里稳定工作，它还不是平台能力。平台能力需要能被命名、复用、观测、回滚，并且能解释给下一位研究者。
+
+```ts
+type PlatformCapability = {
+  inputContract: string;
+  outputContract: string;
+  owner: "research" | "platform" | "shared";
+  observable: boolean;
+  reproducible: boolean;
+};
+```
+
+这个博客会持续记录这些边界如何在真实项目里被发现、修正和固化。

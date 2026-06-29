@@ -1,0 +1,84 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/Container.astro";
+import Link from "@components/Link.astro";
+import { SITE } from "@consts";
+
+const title = "Resume";
+const description =
+  "Online resume for AI drug discovery platform engineering, RDKit, PostgreSQL, and research tooling.";
+---
+
+<Layout title={title} description={description}>
+  <Container>
+    <aside data-pagefind-ignore>
+      <div class="space-y-12">
+        <section class="space-y-5">
+          <h1
+            class="text-3xl font-semibold text-black sm:text-4xl dark:text-white"
+          >
+            {SITE.AUTHOR}
+          </h1>
+          <article>
+            <p>
+              Platform engineer focused on turning computational chemistry and
+              AI research workflows into reliable internal products: data
+              models, pipelines, search, observability, and developer
+              experience.
+            </p>
+          </article>
+          <div class="not-prose flex flex-wrap gap-2 text-sm">
+            <Link href={`mailto:${SITE.EMAIL}`}>{SITE.EMAIL}</Link>
+            <span class="text-black/25 dark:text-white/25">/</span>
+            <Link href="/projects">Projects</Link>
+            <span class="text-black/25 dark:text-white/25">/</span>
+            <Link href="/rss.xml">RSS</Link>
+          </div>
+        </section>
+
+        <section
+          class="animate grid gap-6 border-y border-black/10 py-10 md:grid-cols-[0.35fr_0.65fr] dark:border-white/15"
+        >
+          <h2 class="font-semibold text-black dark:text-white">Experience</h2>
+          <div class="space-y-8">
+            <article>
+              <h3>AI Drug Discovery Platform Engineering</h3>
+              <p>
+                Built research-facing systems for molecular data ingestion,
+                model task orchestration, experiment tracking, and internal API
+                design. Partnered with computational chemists and ML scientists
+                to make notebooks, batch jobs, and production services share the
+                same data contracts.
+              </p>
+            </article>
+            <article>
+              <h3>Data Infrastructure</h3>
+              <p>
+                Designed PostgreSQL-backed schemas for compounds, assay results,
+                model runs, and audit trails. Tuned indexing, migrations, and
+                background jobs for datasets that need both scientific
+                traceability and product velocity.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="animate grid gap-6 md:grid-cols-[0.35fr_0.65fr]">
+          <h2 class="font-semibold text-black dark:text-white">Skills</h2>
+          <article>
+            <ul>
+              <li>RDKit, cheminformatics ETL, molecular standardization</li>
+              <li>
+                PostgreSQL, schema design, indexing, queue-backed workflows
+              </li>
+              <li>Python, TypeScript, Astro, internal tool and platform UI</li>
+              <li>
+                Experiment tracking, model serving boundaries, observability
+              </li>
+            </ul>
+          </article>
+        </section>
+      </div>
+    </aside>
+  </Container>
+</Layout>

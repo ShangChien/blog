@@ -1,0 +1,41 @@
+---
+const repo = import.meta.env.PUBLIC_GISCUS_REPO;
+const repoId = import.meta.env.PUBLIC_GISCUS_REPO_ID;
+const category = import.meta.env.PUBLIC_GISCUS_CATEGORY ?? "Announcements";
+const categoryId = import.meta.env.PUBLIC_GISCUS_CATEGORY_ID;
+const lang = import.meta.env.PUBLIC_GISCUS_LANG ?? "zh-CN";
+const enabled = Boolean(repo && repoId && categoryId);
+---
+
+{
+  enabled ? (
+    <>
+      <div class="giscus" />
+      <script
+        is:inline
+        data-astro-rerun
+        src="https://giscus.app/client.js"
+        data-repo={repo}
+        data-repo-id={repoId}
+        data-category={category}
+        data-category-id={categoryId}
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang={lang}
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async
+      />
+    </>
+  ) : (
+    <div class="rounded-lg border border-black/15 p-4 text-sm dark:border-white/20">
+      Giscus is ready. Add PUBLIC_GISCUS_REPO, PUBLIC_GISCUS_REPO_ID,
+      PUBLIC_GISCUS_CATEGORY_ID, and optionally PUBLIC_GISCUS_CATEGORY in Vercel
+      to enable comments.
+    </div>
+  )
+}
