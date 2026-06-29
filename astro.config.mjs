@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE ?? "https://deep-platform-notes.vercel.app",
+  site: process.env.SITE ?? "https://deep-platform-notes.pages.dev",
   integrations: [sitemap(), mdx(), pagefind()],
   vite: {
     plugins: [tailwindcss()],

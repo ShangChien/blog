@@ -8,7 +8,7 @@ It is set up for:
 - RDKit and PostgreSQL technical posts
 - Personal project write-ups
 - Online resume
-- MDX, Tailwind CSS, Pagefind search, Giscus comments, RSS, sitemap, and Vercel deployment
+- MDX, Tailwind CSS, Pagefind search, Giscus comments, RSS, sitemap, and Cloudflare Pages deployment
 
 ## Commands
 
@@ -28,7 +28,21 @@ pnpm preview
 
 ## Deployment
 
-Deploy to Vercel with the included `vercel.json`.
+Deploy to Cloudflare Pages with the included `wrangler.toml`.
+
+Cloudflare Pages build settings:
+
+```sh
+Build command: pnpm build
+Build output directory: dist
+Install command: pnpm install --frozen-lockfile
+```
+
+For direct uploads from your local machine, run:
+
+```sh
+pnpm deploy:cloudflare
+```
 
 Set `SITE` to your production origin, for example:
 
@@ -36,7 +50,7 @@ Set `SITE` to your production origin, for example:
 SITE=https://your-domain.com
 ```
 
-To enable Giscus comments, add these public environment variables in Vercel:
+To enable Giscus comments, add these public environment variables in Cloudflare Pages:
 
 ```sh
 PUBLIC_GISCUS_REPO=owner/repo

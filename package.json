@@ -8,7 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy:vercel": "vercel --prod"
+    "deploy:cloudflare": "pnpm build && pnpm dlx wrangler pages deploy dist"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
