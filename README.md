@@ -28,7 +28,7 @@ pnpm preview
 
 ## Deployment
 
-Deploy to Cloudflare Pages with the included `wrangler.toml`.
+Deploy to Cloudflare Pages with Git integration.
 
 Cloudflare Pages build settings:
 
@@ -36,12 +36,6 @@ Cloudflare Pages build settings:
 Build command: pnpm build
 Build output directory: dist
 Install command: pnpm install --frozen-lockfile
-```
-
-For direct uploads from your local machine, run:
-
-```sh
-pnpm deploy:cloudflare
 ```
 
 Set `SITE` to your production origin, for example:

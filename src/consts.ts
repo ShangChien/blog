@@ -4,8 +4,8 @@ export const SITE: Site = {
   TITLE: "Deep Platform Notes",
   DESCRIPTION:
     "A long-running engineering blog on AI drug discovery platforms, RDKit, PostgreSQL, and practical research tooling.",
-  EMAIL: "hello@example.com",
-  AUTHOR: "Your Name",
+  EMAIL: "hi@emm.sh",
+  AUTHOR: "ShangChien",
   NUM_POSTS_ON_HOMEPAGE: 5,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
 };
@@ -30,11 +30,7 @@ export const PROJECTS: Metadata = {
 export const SOCIALS: Socials = [
   {
     NAME: "GitHub",
-    HREF: "https://github.com/yourname",
-  },
-  {
-    NAME: "LinkedIn",
-    HREF: "https://www.linkedin.com/in/yourname",
+    HREF: "https://github.com/shangchien",
   },
   {
     NAME: "RSS",
