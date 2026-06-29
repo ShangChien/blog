@@ -5,9 +5,60 @@ import EmailLink from "@components/EmailLink.astro";
 import Link from "@components/Link.astro";
 import { SITE } from "@consts";
 
-const title = "Resume";
+const title = "简历";
 const description =
-  "Online resume for AI drug discovery platform engineering, RDKit, PostgreSQL, and research tooling.";
+  "陈尚千的个人简历，聚焦 AI 药物研发、计算化学平台、RDKit、PostgreSQL 与科研算法产品化。";
+
+const skillGroups = [
+  {
+    title: "编程与后端",
+    items: ["Python", "Web API", "任务调度", "模型服务封装", "系统集成"],
+  },
+  {
+    title: "计算化学与分子信息学",
+    items: ["RDKit", "分子结构处理", "晶体结构数据", "DFT 工作流", "特征匹配"],
+  },
+  {
+    title: "数据库与检索",
+    items: ["PostgreSQL", "结构检索", "子结构检索", "相似度检索", "索引优化"],
+  },
+  {
+    title: "平台与交付",
+    items: [
+      "前端交互",
+      "用户鉴权",
+      "IAM 租户架构",
+      "MCP 工具服务",
+      "私有化部署",
+    ],
+  },
+];
+
+const platforms = [
+  "Uni-QSAR 自动化定量构效关系建模平台",
+  "ADMET 分子性质预测平台",
+  "Uni-PK 药代动力学模拟平台",
+  "ToxScan 毒性预测平台",
+  "NMR-Solver 核磁解析平台",
+  "PostgreSQL + RDKit 分子结构检索数据库",
+];
+
+const deliveryItems = [
+  "Bohr 光子计费体系支持",
+  "VIP License 授权机制",
+  "域名版本试用申请",
+  "用户鉴权与权限管理",
+  "私有化部署与客户环境适配",
+  "客户问题排查与交付文档支持",
+];
+
+const customers = [
+  "华东医药",
+  "仁和益康",
+  "隆基绿能",
+  "万华化学",
+  "首都医科大学",
+];
 ---
 
 <Layout title={title} description={description}>
@@ -18,65 +69,139 @@ const description =
           <h1
             class="text-3xl font-semibold text-black sm:text-4xl dark:text-white"
           >
-            {SITE.AUTHOR}
+            陈尚千
           </h1>
           <article>
             <p>
-              Platform engineer focused on turning computational chemistry and
-              AI research workflows into reliable internal products: data
-              models, pipelines, search, observability, and developer
-              experience.
+              算法原型开发工程师，具备 AI
+              药物研发、计算化学、分子信息学平台研发经验。熟悉
+              Python、RDKit、PostgreSQL、API
+              开发、前端交互、任务调度、用户鉴权及私有化部署，能够推动算法原型向工程化、平台化和商业化产品转化。
             </p>
           </article>
           <div class="not-prose flex flex-wrap gap-2 text-sm">
             <EmailLink email={SITE.EMAIL} ariaLabel={`Email ${SITE.AUTHOR}`} />
             <span class="text-black/25 dark:text-white/25">/</span>
-            <Link href="/projects">Projects</Link>
+            <Link href="https://github.com/ShangChien" external>GitHub</Link>
             <span class="text-black/25 dark:text-white/25">/</span>
-            <Link href="/rss.xml">RSS</Link>
+            <Link href="/resume.md">Markdown 简历</Link>
           </div>
         </section>
 
         <section
           class="animate grid gap-6 border-y border-black/10 py-10 md:grid-cols-[0.35fr_0.65fr] dark:border-white/15"
         >
-          <h2 class="font-semibold text-black dark:text-white">Experience</h2>
+          <h2 class="font-semibold text-black dark:text-white">工作经历</h2>
           <div class="space-y-8">
             <article>
-              <h3>AI Drug Discovery Platform Engineering</h3>
+              <h3>算法原型开发工程师</h3>
+              <p class="text-sm text-black/60 dark:text-white/60">
+                深势科技｜2024.04 - 至今
+              </p>
               <p>
-                Built research-facing systems for molecular data ingestion,
-                model task orchestration, experiment tracking, and internal API
-                design. Partnered with computational chemists and ML scientists
-                to make notebooks, batch jobs, and production services share the
-                same data contracts.
+                主要负责 AI
+                药物研发与计算化学相关平台的研发、建设、部署及商业化支持，参与多个核心产品从原型验证到平台化落地的全过程。
+              </p>
+              <ul>
+                <li>
+                  覆盖前端页面、后端
+                  API、数据库、任务管理、结果查询、权限管理和部署交付等模块。
+                </li>
+                <li>
+                  参与 MCP
+                  工具服务建设，将平台能力封装为智能体或外部系统可调用的工具。
+                </li>
+                <li>
+                  主导或深度参与分子结构检索数据库建设，支持相似度、子结构和复杂化学特征匹配。
+                </li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="animate grid gap-6 md:grid-cols-[0.35fr_0.65fr]">
+          <h2 class="font-semibold text-black dark:text-white">专业技能</h2>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {
+              skillGroups.map((group) => (
+                <article>
+                  <h3>{group.title}</h3>
+                  <p>{group.items.join(" / ")}</p>
+                </article>
+              ))
+            }
+          </div>
+        </section>
+
+        <section
+          class="animate grid gap-6 border-y border-black/10 py-10 md:grid-cols-[0.35fr_0.65fr] dark:border-white/15"
+        >
+          <h2 class="font-semibold text-black dark:text-white">项目经历</h2>
+          <article>
+            <p>
+              参与或负责多个 AI
+              药物研发与计算化学平台建设，重点将科研算法能力转化为可交互、可调用、可部署的产品功能。
+            </p>
+            <ul class="not-prose mt-4 grid gap-2 text-sm sm:grid-cols-2">
+              {
+                platforms.map((platform) => (
+                  <li class="rounded-lg border border-black/10 px-3 py-2 dark:border-white/15">
+                    {platform}
+                  </li>
+                ))
+              }
+            </ul>
+          </article>
+        </section>
+
+        <section class="animate grid gap-6 md:grid-cols-[0.35fr_0.65fr]">
+          <h2 class="font-semibold text-black dark:text-white">商业化交付</h2>
+          <article class="space-y-4">
+            <p>
+              参与平台商业化能力建设和客户项目支持，具备从产品功能开发到客户部署交付的完整经验。
+            </p>
+            <ul>
+              {deliveryItems.map((item) => <li>{item}</li>)}
+            </ul>
+            <p>
+              服务或支持客户包括：{customers.join("、")}。
+            </p>
+          </article>
+        </section>
+
+        <section
+          class="animate grid gap-6 border-y border-black/10 py-10 md:grid-cols-[0.35fr_0.65fr] dark:border-white/15"
+        >
+          <h2 class="font-semibold text-black dark:text-white">教育背景</h2>
+          <div class="space-y-6">
+            <article>
+              <h3>苏州大学｜材料科学与工程｜硕士</h3>
+              <p>2018.09 - 2021.06</p>
+              <p>
+                主修材料晶体学、计算材料学、密度泛函理论、多尺度模拟、机器学习等课程。
               </p>
             </article>
             <article>
-              <h3>Data Infrastructure</h3>
+              <h3>盐城工学院｜新能源材料与器件｜学士</h3>
+              <p>2014.09 - 2018.06</p>
               <p>
-                Designed PostgreSQL-backed schemas for compounds, assay results,
-                model runs, and audit trails. Tuned indexing, migrations, and
-                background jobs for datasets that need both scientific
-                traceability and product velocity.
+                主修材料科学基础、固体物理、半导体物理、物理化学、新能源材料等课程。
               </p>
             </article>
           </div>
         </section>
 
         <section class="animate grid gap-6 md:grid-cols-[0.35fr_0.65fr]">
-          <h2 class="font-semibold text-black dark:text-white">Skills</h2>
+          <h2 class="font-semibold text-black dark:text-white">科研产出</h2>
           <article>
-            <ul>
-              <li>RDKit, cheminformatics ETL, molecular standardization</li>
-              <li>
-                PostgreSQL, schema design, indexing, queue-backed workflows
-              </li>
-              <li>Python, TypeScript, Astro, internal tool and platform UI</li>
-              <li>
-                Experiment tracking, model serving boundaries, observability
-              </li>
-            </ul>
+            <p>
+              参与发表 9 篇学术文章，方向覆盖药代动力学 Neural
+              ODE、有机半导体表征、分子结构识别、力场参数化、分子性质预测与计算材料研究。
+            </p>
+            <p>
+              参与 10
+              项发明专利或外观设计专利公开/授权，涉及定量构效分析预测图形用户界面、有机电致发光材料、硅酸盐荧光粉和银纳米线等方向。
+            </p>
           </article>
         </section>
       </div>

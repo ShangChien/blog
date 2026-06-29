@@ -1,19 +1,19 @@
 import type { Metadata, Site, Socials } from "@types";
 
 export const SITE: Site = {
-  TITLE: "Deep Platform Notes",
+  TITLE: "陈尚千",
   DESCRIPTION:
-    "A long-running engineering blog on AI drug discovery platforms, RDKit, PostgreSQL, and practical research tooling.",
+    "陈尚千的个人主页，记录 AI 药物研发平台、计算化学、分子信息学、RDKit 与 PostgreSQL 工程实践。",
   EMAIL: "hi@emm.sh",
-  AUTHOR: "ShangChien",
+  AUTHOR: "陈尚千",
   NUM_POSTS_ON_HOMEPAGE: 5,
   NUM_PROJECTS_ON_HOMEPAGE: 3,
 };
 
 export const HOME: Metadata = {
-  TITLE: "Home",
+  TITLE: "主页",
   DESCRIPTION:
-    "Technical writing, project notes, and resume for AI drug discovery platform engineering.",
+    "陈尚千的个人介绍、AI 药物研发平台项目、计算化学工程经验与在线简历。",
 };
 
 export const BLOG: Metadata = {
@@ -30,7 +30,7 @@ export const PROJECTS: Metadata = {
 export const SOCIALS: Socials = [
   {
     NAME: "GitHub",
-    HREF: "https://github.com/shangchien",
+    HREF: "https://github.com/ShangChien",
   },
   {
     NAME: "RSS",
