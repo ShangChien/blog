@@ -1,0 +1,41 @@
+---
+import { cn } from "@lib/utils";
+
+type Props = {
+  email: string;
+  ariaLabel?: string;
+};
+
+const { email, ariaLabel } = Astro.props;
+const [user, domain] = email.split("@");
+---
+
+<a
+  href="#"
+  data-email-link
+  data-email-user={user}
+  data-email-domain={domain}
+  aria-label={ariaLabel ?? "Email"}
+  class={cn(
+    "inline-block text-current decoration-black/30 underline underline-offset-[3px] transition-colors duration-300 ease-in-out hover:text-black hover:decoration-black/50 focus-visible:text-black focus-visible:decoration-black/50 dark:decoration-white/30 dark:hover:text-white dark:hover:decoration-white/50 dark:focus-visible:text-white dark:focus-visible:decoration-white/50",
+  )}
+>
+  {user}<span aria-hidden="true"> at </span>{domain}
+</a>
+
+<script is:inline data-astro-rerun>
+  (() => {
+    const links = document.querySelectorAll("[data-email-link]");
+
+    links.forEach((link) => {
+      const user = link.getAttribute("data-email-user");
+      const domain = link.getAttribute("data-email-domain");
+
+      if (!user || !domain) return;
+
+      const email = `${user}@${domain}`;
+      link.setAttribute("href", `mailto:${email}`);
+      link.textContent = email;
+    });
+  })();
+</script>

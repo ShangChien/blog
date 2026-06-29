@@ -3,18 +3,42 @@ import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
 import { SITE, HOME, SOCIALS } from "@consts";
 import ArrowCard from "@components/ArrowCard.astro";
+import EmailLink from "@components/EmailLink.astro";
 import Link from "@components/Link.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
-const blog = (await getCollection("blog"))
+type BlogEntry = CollectionEntry<"blog"> & {
+  data: {
+    title: string;
+    description: string;
+    date: Date;
+    updated?: Date;
+    draft?: boolean;
+    tags?: string[];
+  };
+};
+
+type ProjectEntry = CollectionEntry<"projects"> & {
+  data: {
+    title: string;
+    description: string;
+    date: Date;
+    draft?: boolean;
+    demoURL?: string;
+    repoURL?: string;
+  };
+};
+
+const blogEntries = (await getCollection("blog")) as BlogEntry[];
+const projectEntries = (await getCollection("projects")) as ProjectEntry[];
+
+const blog = blogEntries
   .filter((post) => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
 
-const projects: CollectionEntry<"projects">[] = (
-  await getCollection("projects")
-)
+const projects = projectEntries
   .filter((project) => !project.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
@@ -142,12 +166,7 @@ const projects: CollectionEntry<"projects">[] = (
               ))
             }
             <li class="line-clamp-1">
-              <Link
-                href={`mailto:${SITE.EMAIL}`}
-                aria-label={`Email ${SITE.TITLE}`}
-              >
-                {SITE.EMAIL}
-              </Link>
+              <EmailLink email={SITE.EMAIL} ariaLabel={`Email ${SITE.TITLE}`} />
             </li>
           </ul>
         </section>

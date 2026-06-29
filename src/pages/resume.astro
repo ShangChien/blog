@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/Container.astro";
+import EmailLink from "@components/EmailLink.astro";
 import Link from "@components/Link.astro";
 import { SITE } from "@consts";
 
@@ -28,7 +29,7 @@ const description =
             </p>
           </article>
           <div class="not-prose flex flex-wrap gap-2 text-sm">
-            <Link href={`mailto:${SITE.EMAIL}`}>{SITE.EMAIL}</Link>
+            <EmailLink email={SITE.EMAIL} ariaLabel={`Email ${SITE.AUTHOR}`} />
             <span class="text-black/25 dark:text-white/25">/</span>
             <Link href="/projects">Projects</Link>
             <span class="text-black/25 dark:text-white/25">/</span>
