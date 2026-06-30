@@ -9,7 +9,7 @@ export const profile = {
     intro:
       "算法原型落地工程师，专注 AI 药物研发、计算化学与分子信息学平台建设。",
     summary:
-      "自 2024 年 4 月起参与并主导 Uni-QSAR、ADMET、Uni-PK、ToxScan、NMR-Solver 及分子结构检索数据库等核心产品研发，覆盖算法原型、后端服务、数据库设计、前端交互、任务调度、用户鉴权、MCP 工具服务、线上部署与私有化交付。",
+      "自 2024 年 4 月起参与并主导 Uni-QSAR、ADMET、Uni-PK、ToxScan、NMR-Solver 及分子结构检索数据库等核心产品研发，并独立开发可嵌入分子画板 Molio，覆盖算法原型、后端服务、数据库设计、前端交互、任务调度、用户鉴权、MCP 工具服务、线上部署与私有化交付。",
     philosophy:
       "我习惯把科研算法工具做成可交互、可调用、可部署的工程平台，帮助团队把计算化学和分子信息学能力转化为可商业化产品。",
     actions: {
@@ -68,6 +68,12 @@ export const profile = {
           "基于 PostgreSQL + RDKit 构建的高性能结构检索服务，支持相似度、子结构和复杂化学特征匹配。",
         tags: ["PostgreSQL", "RDKit", "结构检索"],
       },
+      {
+        name: "Molio",
+        description:
+          "基于 Vue 3、RDKit 与 VRender 的可嵌入二维分子编辑器内核，支持宿主集成、格式导入导出与插件扩展。",
+        tags: ["Vue 3", "RDKit", "分子画板"],
+      },
     ],
     capabilities: [
       "Python 后端与 Web API 设计",
@@ -87,7 +93,7 @@ export const profile = {
     intro:
       "Algorithm prototyping engineer focused on AI drug discovery, computational chemistry, and molecular informatics platforms.",
     summary:
-      "Since April 2024, I have helped build and lead core products including Uni-QSAR, ADMET, Uni-PK, ToxScan, NMR-Solver, and a molecular structure search database, spanning algorithm prototypes, backend services, database design, frontend workflows, task orchestration, authentication, MCP tool services, deployment, and private delivery.",
+      "Since April 2024, I have helped build and lead core products including Uni-QSAR, ADMET, Uni-PK, ToxScan, NMR-Solver, and a molecular structure search database, and independently developed Molio, an embeddable 2D molecular editor. My work spans algorithm prototypes, backend services, database design, frontend workflows, task orchestration, authentication, MCP tool services, deployment, and private delivery.",
     philosophy:
       "I turn research algorithms into interactive, callable, and deployable engineering platforms that make computational chemistry and molecular informatics capabilities ready for product and commercial use.",
     actions: {
@@ -148,6 +154,12 @@ export const profile = {
         description:
           "A high-performance PostgreSQL + RDKit search service supporting similarity search, substructure search, and complex chemical feature matching.",
         tags: ["PostgreSQL", "RDKit", "structure search"],
+      },
+      {
+        name: "Molio",
+        description:
+          "An embeddable Vue 3 2D molecular editor kernel built on RDKit and VRender, with host integration, format I/O, and plugin families.",
+        tags: ["Vue 3", "RDKit", "molecular editor"],
       },
     ],
     capabilities: [

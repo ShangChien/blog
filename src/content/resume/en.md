@@ -76,6 +76,7 @@ Participated in or led multiple AI drug discovery and computational chemistry pl
 - ToxScan toxicity prediction platform: identifies potential toxicity risks during early drug discovery.
 - NMR-Solver platform: supports molecular structure elucidation and NMR data analysis for structure confirmation and research workflows.
 - Molecular structure search database: a PostgreSQL + RDKit service supporting similarity search, substructure search, and complex chemical feature matching.
+- Molio 2D molecular editor: embeddable Vue 3 editor kernel built on RDKit and VRender, with SMILES/MOL/SDF I/O, SVG/PNG export, controlled snapshots, and object/ui/workflow plugin families. Published as `@shangchien/molio`; live demo at https://molio.emm.sh/, docs at https://molio.emm.sh/docs/.
 
 ## Commercialization and Delivery
 

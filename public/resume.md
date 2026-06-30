@@ -69,6 +69,7 @@ GitHub：https://github.com/ShangChien
 - ToxScan 毒性预测平台：面向分子毒性风险评估场景，帮助用户在药物研发早期识别潜在毒性问题。
 - NMR-Solver 核磁解析平台：辅助分子结构解析和核磁相关数据分析，面向化学结构确认和科研分析场景。
 - 分子结构检索数据库：基于 PostgreSQL + RDKit 构建高性能分子结构检索服务，支持相似度检索、子结构检索及复杂化学特性匹配。
+- Molio 二维分子画板：基于 Vue 3、RDKit 与 VRender 开发的可嵌入分子编辑器内核，支持 SMILES/MOL/SDF 读写、SVG/PNG 导出、受控快照与 object/ui/workflow 插件扩展；npm 包 `@shangchien/molio`，在线 demo：https://molio.emm.sh/，文档：https://molio.emm.sh/docs/。
 
 ## 商业化与客户交付经验
 

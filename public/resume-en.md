@@ -39,6 +39,7 @@ Responsible for the development, construction, deployment, and commercialization
 - ToxScan toxicity prediction platform.
 - NMR-Solver platform.
 - PostgreSQL + RDKit molecular structure search database.
+- Molio 2D molecular editor: embeddable Vue 3 editor kernel built on RDKit and VRender, with SMILES/MOL/SDF I/O, SVG/PNG export, controlled snapshots, and object/ui/workflow plugin families. Published as `@shangchien/molio`; live demo at https://molio.emm.sh/, docs at https://molio.emm.sh/docs/.
 
 ## Commercialization and Delivery
 
